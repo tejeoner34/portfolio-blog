@@ -25,10 +25,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
     <>
       <header className="border-b border-border">
         <div className="container mx-auto px-4 py-6">
-          <Link
-            href="/blog"
-            className="text-primary hover:text-primary/80 transition-colors mb-4 inline-block"
-          >
+          <Link href="/blog" className="font-medium mb-4 inline-block">
             ← Back to Blog
           </Link>
           <h1 className="text-4xl font-bold text-foreground">{post.title}</h1>

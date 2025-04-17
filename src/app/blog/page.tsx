@@ -56,10 +56,7 @@ export default async function BlogPage() {
                   <span className="text-sm text-muted-foreground">
                     By {post.author?.node?.name || 'Unknown Author'}
                   </span>
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="text-primary hover:text-primary/80 transition-colors"
-                  >
+                  <Link href={`/blog/${post.slug}`} className="font-medium">
                     Read more →
                   </Link>
                 </div>
