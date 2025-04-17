@@ -1,18 +1,10 @@
-import { getAllPosts, getPostBySlug } from '@/lib/api';
-import { WordPressPost } from '@/lib/types';
+import { getPostBySlug } from '@/lib/api';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export const revalidate = 3600;
 export const dynamic = 'force-static';
-
-export async function generateStaticParams() {
-  const posts = await getAllPosts();
-  return posts.map((post: WordPressPost) => ({
-    slug: post.slug,
-  }));
-}
 
 export default async function BlogPost({ params }: { params: { slug: string } }) {
   const post = await getPostBySlug(params.slug);
@@ -49,7 +41,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
           </div>
         )}
 
-        <article className="prose prose-invert max-w-none">
+        <article className="prose prose-invert max-w-none prose-headings:font-bold prose-headings:text-foreground prose-h2:text-3xl prose-h3:text-2xl prose-h4:text-xl prose-p:text-muted-foreground">
           <div
             className="text-foreground"
             dangerouslySetInnerHTML={{ __html: post.content || '' }}
