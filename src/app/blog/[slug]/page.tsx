@@ -1,4 +1,4 @@
-import { getPostBySlug } from '@/lib/api';
+import { getAllPosts, getPostBySlug } from '@/lib/api';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -6,8 +6,18 @@ import Link from 'next/link';
 export const revalidate = 3600;
 export const dynamic = 'force-static';
 
-export default async function BlogPost({ params }: { params: { slug: string } }) {
-  const post = await getPostBySlug(params.slug);
+export async function generateStaticParams() {
+  const posts = await getAllPosts();
+
+  return posts.map((post: { slug: string }) => ({
+    slug: post.slug,
+  }));
+}
+
+type Params = Promise<{ slug: string }>;
+export default async function BlogPost({ params }: { params: Params }) {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     notFound();
