@@ -15,7 +15,7 @@
 
 # next.js
 /.next/
-/out/
+# /out/ - Removed to allow static export for Vercel deployment
 
 # production
 /build
