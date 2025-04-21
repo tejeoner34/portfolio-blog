@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
+import PageHeader from '@/components/PageHeader';
 
 export default function Error({
   error,
@@ -17,10 +18,10 @@ export default function Error({
   return (
     <div className="flex items-center justify-center py-16">
       <div className="container mx-auto px-4 max-w-md text-center">
-        <h2 className="text-2xl font-bold text-foreground mb-4">Something went wrong!</h2>
-        <p className="text-muted-foreground mb-6">
-          We apologize for the inconvenience. Please try again later.
-        </p>
+        <PageHeader
+          title="Something went wrong!"
+          subtitle="We apologize for the inconvenience. Please try again later."
+        />
         <div className="space-x-4">
           <button
             onClick={reset}

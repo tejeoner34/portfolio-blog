@@ -2,6 +2,7 @@ import { getAllPosts, getPostBySlug } from '@/lib/api';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
+import PageHeader from '@/components/PageHeader';
 
 export const revalidate = 3600;
 export const dynamic = 'force-static';
@@ -23,21 +24,21 @@ export default async function BlogPost({ params }: { params: Params }) {
     notFound();
   }
 
+  const subtitle = (
+    <div className="flex items-center text-muted-foreground mt-4">
+      <span>By {post.author?.node?.name || 'Unknown Author'}</span>
+      <span className="mx-2">•</span>
+      <time>{new Date(post.date).toLocaleDateString()}</time>
+    </div>
+  );
+
   return (
     <>
-      <header className="border-b border-border">
-        <div className="container mx-auto px-4 py-6">
-          <Link href="/blog" className="font-medium mb-4 inline-block">
-            ← Back to Blog
-          </Link>
-          <h1 className="text-4xl font-bold text-foreground">{post.title}</h1>
-          <div className="flex items-center text-muted-foreground mt-4">
-            <span>By {post.author?.node?.name || 'Unknown Author'}</span>
-            <span className="mx-2">•</span>
-            <time>{new Date(post.date).toLocaleDateString()}</time>
-          </div>
-        </div>
-      </header>
+      <PageHeader title={post.title} subtitle={subtitle}>
+        <Link href="/blog" className="font-medium mb-4 inline-block">
+          ← Back to Blog
+        </Link>
+      </PageHeader>
 
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         {post.featuredImage?.node && (
