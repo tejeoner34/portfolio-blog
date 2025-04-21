@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import PageHeader from '@/components/PageHeader';
+import { Metadata } from 'next';
 
 export const revalidate = 3600;
 export const dynamic = 'force-static';
@@ -16,6 +17,24 @@ export async function generateStaticParams() {
 }
 
 type Params = Promise<{ slug: string }>;
+
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
+
+  if (!post) {
+    return {
+      title: 'Post Not Found | Portfolio',
+      description: 'The requested blog post could not be found.',
+    };
+  }
+
+  return {
+    title: `${post.title} | Portfolio Blog`,
+    description: post.excerpt?.replace(/<[^>]*>/g, '') || 'Read this blog post from my portfolio.',
+  };
+}
+
 export default async function BlogPost({ params }: { params: Params }) {
   const { slug } = await params;
   const post = await getPostBySlug(slug);

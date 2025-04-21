@@ -3,6 +3,12 @@
 import { useEffect } from 'react';
 import Link from 'next/link';
 import PageHeader from '@/components/PageHeader';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Error | Portfolio Blog',
+  description: 'Something went wrong. Please try again later.',
+};
 
 export default function Error({
   error,
