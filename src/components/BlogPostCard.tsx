@@ -8,7 +8,7 @@ interface BlogPostCardProps {
 
 export default function BlogPostCard({ post }: BlogPostCardProps) {
   return (
-    <article className="bg-card rounded-lg overflow-hidden shadow-lg border border-border hover:border-primary/50 transition-colors">
+    <article className="flex flex-col bg-card rounded-lg overflow-hidden shadow-lg border border-border hover:border-primary/50 transition-colors">
       {post.featuredImage?.node && (
         <div className="relative h-48 w-full">
           <Image
@@ -19,7 +19,7 @@ export default function BlogPostCard({ post }: BlogPostCardProps) {
           />
         </div>
       )}
-      <div className="flex flex-col items-stretch h-full p-6">
+      <div className="flex flex-1 flex-col items-stretch p-6">
         <h2 className="text-xl font-semibold mb-2 text-card-foreground">{post.title}</h2>
         <div
           className="text-muted-foreground mb-4 line-clamp-3 flex-grow"
