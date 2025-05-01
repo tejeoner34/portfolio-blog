@@ -41,7 +41,6 @@ export default async function BlogPost({ params }: { params: Params }) {
   if (!post) {
     notFound();
   }
-
   const subtitle = (
     <div className="flex items-center text-muted-foreground mt-4">
       <span>By {post.author?.node?.name || 'Unknown Author'}</span>
@@ -53,7 +52,7 @@ export default async function BlogPost({ params }: { params: Params }) {
   return (
     <>
       <PageHeader title={post.title} subtitle={subtitle}>
-        <Link href="/blog" className="font-medium mb-4 inline-block">
+        <Link href="/" className="font-medium mb-4 inline-block">
           ← Back to Blog
         </Link>
       </PageHeader>

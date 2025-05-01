@@ -16,7 +16,7 @@ export default function NotFound() {
           subtitle="The page you are looking for doesn't exist or has been moved."
         />
         <Link
-          href="/blog"
+          href="/"
           className="px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-colors"
         >
           Return to Blog
