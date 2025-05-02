@@ -29,7 +29,7 @@ export default function BlogPostCard({ post }: BlogPostCardProps) {
           <span className="text-sm text-muted-foreground">
             By {post.author?.node?.name || 'Unknown Author'}
           </span>
-          <Link href={`/blog/${post.slug}`} className="font-medium">
+          <Link href={`/blog/${post.slug}.html`} className="font-medium">
             Read more →
           </Link>
         </div>
